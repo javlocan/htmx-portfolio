@@ -12,6 +12,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 // Routes
+const partialsRouter = require("./partials");
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
@@ -21,12 +22,14 @@ app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "home", "index.html"));
 });
 
+app.use("/partials", partialsRouter);
+/* 
 app.get("/nav/home", (req, res) => {
   res.sendFile(path.join(__dirname, "partials", "nav", "home", "index.html"));
 });
 
 app.get("/nav/about", (req, res) => {
   res.sendFile(path.join(__dirname, "partials", "nav", "about", "index.html"));
-});
+}); */
 
 module.exports = app;
